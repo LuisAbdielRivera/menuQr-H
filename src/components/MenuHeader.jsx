@@ -9,7 +9,6 @@ export default function MenuHeader({ title }) {
 
       <div className='flex items-center justify-between px-5 py-5'>
 
-        {/* BOTON ATRAS */}
         <button
           onClick={() => navigate(-1)}
           className='rounded-2xl bg-white/10 px-4 py-3 text-white transition hover:bg-white/20'
@@ -19,12 +18,10 @@ export default function MenuHeader({ title }) {
 
         </button>
 
-        {/* TITULO */}
         <h1 className='text-3xl font-black text-yellow-400'>
           {title}
         </h1>
 
-        {/* ESPACIO */}
         <div className='w-[52px]' />
 
       </div>

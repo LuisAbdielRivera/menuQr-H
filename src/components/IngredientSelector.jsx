@@ -24,14 +24,12 @@ export default function IngredientSelector() {
 
       </div>
 
-      {/* MENSAJE UX */}
       <p className='mt-3 text-sm leading-relaxed text-neutral-400'>
 
         Selecciona únicamente los ingredientes que deseas quitar.
 
       </p>
 
-      {/* CHECKS */}
       <div className='mt-5 flex flex-wrap gap-3'>
 
         {ingredients.map((ingredient) => (

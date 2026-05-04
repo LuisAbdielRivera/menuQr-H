@@ -1,36 +1,34 @@
-import MenuHeader from '../components/MenuHeader'
-import CategoryTabs from '../components/CategoryTabs'
-import PromoBanner from '../components/PromoBanner'
-import ProductCard from '../components/ProductCard'
-
 import products from '../data/products'
+import ProductCard from '../components/ProductCard'
+import { useCart } from '../context/CartContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function Menu() {
+
+  const { getTotalItems } = useCart()
+  const navigate = useNavigate()
+
   return (
-    <div className='min-h-screen bg-[#0B0B0B]'>
+    <div className="bg-black min-h-screen p-5">
 
-      <MenuHeader title='MENÚ' />
+      <h1 className="text-yellow-400 text-3xl font-black text-center">
+        MENÚ
+      </h1>
 
-      <main className='p-5'>
+      <div className="grid gap-5 mt-6">
+        {products.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
 
-        <CategoryTabs />
-
-        <PromoBanner />
-
-        <div className='mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3'>
-
-          {products.map((product) => (
-
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
-
-          ))}
-
-        </div>
-
-      </main>
+      {getTotalItems() > 0 && (
+        <button
+          onClick={() => navigate('/pedido')}
+          className="fixed bottom-5 right-5 bg-yellow-400 px-6 py-4 rounded-full font-bold shadow-lg"
+        >
+          Ver pedido ({getTotalItems()})
+        </button>
+      )}
 
     </div>
   )

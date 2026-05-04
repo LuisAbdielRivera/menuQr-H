@@ -1,51 +1,47 @@
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 export default function ProductCard({ product }) {
+
+  const { addToCart } = useCart()
+
   return (
-    <div className='overflow-hidden rounded-[2rem] bg-neutral-900 shadow-lg'>
+    <div className="bg-neutral-900 rounded-2xl overflow-hidden">
 
-      <img
-        src={product.image}
-        alt={product.name}
-        className='h-56 w-full object-cover'
-      />
+      <img src={product.image} className="h-48 w-full object-cover" />
 
-      <div className='p-5'>
+      <div className="p-4">
 
-        <div className='flex items-start justify-between gap-4'>
+        <h2 className="text-xl font-bold text-white">
+          {product.name}
+        </h2>
 
-          <div>
+        <p className="text-neutral-400 text-sm">
+          {product.desc}
+        </p>
 
-            <h2 className='text-2xl font-black text-white'>
-              {product.name}
-            </h2>
+        <div className="flex justify-between mt-4 items-center">
 
-            <p className='mt-2 text-sm text-neutral-400'>
-              {product.desc}
-            </p>
-
-          </div>
-
-          <span className='text-xl font-black text-yellow-400'>
-            {product.price}
+          <span className="text-yellow-400 font-bold">
+            ${product.price}
           </span>
 
-        </div>
-
-        <div className='mt-6'>
-
-          <Link to='/producto'>
-
-            <button className='w-full rounded-2xl bg-white/10 py-4 font-bold text-white transition hover:bg-white/20'>
-              Ver detalle
-            </button>
-
-          </Link>
+          <button
+            onClick={() => addToCart(product)}
+            className="bg-yellow-400 px-4 py-2 rounded-xl font-black text-black"
+          >
+            +
+          </button>
 
         </div>
+
+        <Link to="/producto">
+          <button className="w-full mt-3 bg-white/10 py-2 rounded-lg text-white">
+            Ver detalle
+          </button>
+        </Link>
 
       </div>
-
     </div>
   )
 }

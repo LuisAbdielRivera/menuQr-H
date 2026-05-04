@@ -1,53 +1,87 @@
-import MenuHeader from '../components/MenuHeader'
-import ProductImage from '../components/ProductImage'
-import ProductInfo from '../components/ProductInfo'
-import IngredientSelector from '../components/IngredientSelector'
+import { useState } from 'react'
+import { useCart } from '../context/CartContext.jsx'
+import CustomizePanel from '../components/CustomizePanel.jsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductDetail() {
+
+  const { addToCart } = useCart()
+  const navigate = useNavigate()
+
+  const [notes, setNotes] = useState([])
+  const [showCustomize, setShowCustomize] = useState(false)
+
+  const product = {
+    id: 2,
+    name: 'BBQ Bacon',
+    price: 119,
+    desc: 'Tocino crujiente y salsa BBQ'
+  }
+
+  const handleAdd = () => {
+
+    addToCart({
+      ...product,
+      notes
+    })
+
+    navigate('/')
+  }
+
   return (
-    <div className='min-h-screen bg-[#0B0B0B]'>
+    <div className="bg-black min-h-screen text-white p-5">
 
-      <MenuHeader title='DETALLE' />
+      {/* HEADER */}
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 bg-white/10 px-4 py-2 rounded-lg"
+      >
+        ← Regresar
+      </button>
 
-      <main className='p-5'>
+      {/* INFO */}
+      <h1 className="text-yellow-400 text-3xl font-black">
+        {product.name}
+      </h1>
 
-        <ProductImage />
+      <p className="mt-2 text-neutral-400">
+        {product.desc}
+      </p>
 
-        <ProductInfo />
+      <p className="mt-2 text-yellow-400 text-xl font-bold">
+        ${product.price}
+      </p>
 
-        <div className='mt-6 rounded-[2rem] bg-neutral-900 p-5'>
+      {/* INFO GENERAL */}
+      <div className="mt-6 bg-neutral-900 p-5 rounded-2xl">
+        <h2 className="font-bold">Información</h2>
+        <p className="text-sm text-neutral-400 mt-2">
+          Puedes quitar ingredientes sin costo adicional.
+        </p>
+      </div>
 
-          <h2 className='text-xl font-black text-white'>
-            Información
-          </h2>
+      {/* BOTÓN PERSONALIZAR */}
+      <button
+        onClick={() => setShowCustomize(!showCustomize)}
+        className="mt-5 w-full bg-white/10 py-3 rounded-xl"
+      >
+        {showCustomize
+          ? 'Ocultar personalización'
+          : 'Personalizar hamburguesa'}
+      </button>
 
-          <p className='mt-3 leading-relaxed text-neutral-400'>
-            Todos los ingredientes están incluidos en el precio.
+      {/* PANEL */}
+      {showCustomize && (
+        <CustomizePanel onChange={setNotes} />
+      )}
 
-            <br />
-            <br />
-
-            Puedes quitar ingredientes sin costo adicional.
-          </p>
-
-        </div>
-
-        <IngredientSelector />
-
-        <div className='mt-6 rounded-[2rem] bg-neutral-900 p-5'>
-
-          <h2 className='text-xl font-black text-white'>
-            Notas adicionales
-          </h2>
-
-          <textarea
-            placeholder='Ejemplo: sin cebolla, extra salsa...'
-            className='mt-4 h-32 w-full rounded-2xl border border-white/10 bg-neutral-800 p-4 text-white outline-none placeholder:text-neutral-500'
-          />
-
-        </div>
-
-      </main>
+      {/* AGREGAR */}
+      <button
+        onClick={handleAdd}
+        className="mt-6 w-full bg-yellow-400 text-black py-4 rounded-2xl font-black"
+      >
+        Agregar al pedido
+      </button>
 
     </div>
   )
