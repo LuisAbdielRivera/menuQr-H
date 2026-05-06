@@ -45,6 +45,22 @@ export default function CartProvider({ children }) {
     )
   }
 
+  // ELIMINAR ITEM ESPECÍFICO
+  const removeFromCart = (uniqueId) => {
+    setCart(prev => prev.filter(item => item.uniqueId !== uniqueId))
+  }
+
+  // ACTUALIZAR ITEM (para editar personalización, precio, etc)
+  const updateCartItem = (uniqueId, updates) => {
+    setCart(prev =>
+      prev.map(item =>
+        item.uniqueId === uniqueId
+          ? { ...item, ...updates }
+          : item
+      )
+    )
+  }
+
   // TOTAL REAL
   const getTotalItems = () => {
     return cart.reduce((acc, item) => acc + item.quantity, 0)
@@ -57,6 +73,8 @@ export default function CartProvider({ children }) {
         addToCart,
         decreaseQuantity,
         increaseQuantity,
+        removeFromCart,
+        updateCartItem,
         getTotalItems
       }}
     >
