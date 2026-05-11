@@ -127,7 +127,7 @@ export default function EditItemModal({ item, onSave, onClose }) {
             </button>
             <button
               onClick={handleSave}
-              className="flex-1 py-3 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-xl transition transform hover:scale-105 active:scale-95"
+              className="flex-1 py-3 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-xl transition"
             >
               ✓ Guardar
             </button>

@@ -57,7 +57,6 @@ export default function OrderSummary() {
           <div className="w-8" />
         </div>
 
-        {/* TOTAL - Destacado */}
         <div className="bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border border-yellow-400/30 rounded-2xl p-4">
           <p className="text-neutral-400 text-sm">Total a pagar</p>
           <p className="text-3xl font-black text-yellow-400">${total.toLocaleString()}</p>
@@ -67,7 +66,6 @@ export default function OrderSummary() {
         </div>
       </div>
 
-      {/* ITEMS - Scrollable */}
       <div className="flex-1 overflow-y-auto p-5 space-y-3">
         {cart.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-40 text-center">
@@ -100,7 +98,7 @@ export default function OrderSummary() {
           </label>
           <input
             type="text"
-            placeholder="Ej: Juan"
+            placeholder="Ej: Jorge"
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
@@ -112,7 +110,7 @@ export default function OrderSummary() {
         <button
           onClick={handleSubmit}
           disabled={isSubmitting || cart.length === 0}
-          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 disabled:from-neutral-500 disabled:to-neutral-600 text-black font-black rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:scale-100 flex items-center justify-center gap-2 shadow-lg hover:shadow-yellow-400/30 disabled:shadow-none"
+          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 disabled:from-neutral-500 disabled:to-neutral-600 text-black font-black rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-yellow-400/30 disabled:shadow-none"
         >
           {isSubmitting ? (
             <>

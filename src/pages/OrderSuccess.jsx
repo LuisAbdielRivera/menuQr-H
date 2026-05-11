@@ -1,8 +1,9 @@
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function OrderSuccess() {
   const navigate = useNavigate()
-  const code = Math.floor(1000 + Math.random() * 9000)
+  const code = useMemo(() => Math.floor(1000 + Math.random() * 9000), [])
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center p-5 space-y-6">
@@ -65,7 +66,7 @@ export default function OrderSuccess() {
       <div className="w-full space-y-3 pt-4">
         <button
           onClick={() => navigate('/')}
-          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg"
+          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-2xl transition-all duration-300 shadow-lg"
         >
           ← Volver al menú
         </button>

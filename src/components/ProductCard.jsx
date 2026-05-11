@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { Plus } from 'lucide-react'
 
 export default function ProductCard({ product }) {
 
@@ -28,9 +29,9 @@ export default function ProductCard({ product }) {
 
           <button
             onClick={() => addToCart(product)}
-            className="bg-yellow-400 px-4 py-2 rounded-xl font-black text-black"
+            className="bg-yellow-400 px-4 py-2 rounded-xl font-black text-black hover:bg-yellow-300 transition-colors duration-200 hover:animate-bounce flex items-center justify-center"
           >
-            +
+            <Plus size={20} />
           </button>
 
         </div>

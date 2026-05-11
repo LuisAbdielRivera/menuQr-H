@@ -15,7 +15,7 @@ export default function ProductDetail() {
 
   const handleAdd = () => {
     addToCart(product)
-    navigate('/')
+    // Removed navigation to allow adding more products
   }
 
   return (
@@ -72,7 +72,7 @@ export default function ProductDetail() {
       <div className="border-t border-neutral-800 p-5 bg-gradient-to-t from-black via-black/95 to-transparent">
         <button
           onClick={handleAdd}
-          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-yellow-400/30"
+          className="w-full py-4 px-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-black font-black rounded-2xl transition-all duration-300 shadow-lg hover:shadow-yellow-400/30"
         >
           ✓ Agregar al pedido
         </button>
